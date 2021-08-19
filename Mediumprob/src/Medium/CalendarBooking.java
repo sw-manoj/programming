@@ -12,10 +12,10 @@ public class CalendarBooking {
 		CalendarBooking obj = new CalendarBooking();
 		
 		System.out.println(obj.book(10, 20));
-		System.out.println(obj.book(15, 25));
+		System.out.println(obj.book(21, 25));
 //		System.out.println(obj.book(5, 10));
-		System.out.println(obj.book(5, 11));
-		System.out.println(obj.book(20, 25));
+//		System.out.println(obj.book(5, 11));
+		System.out.println(obj.book(20, 35));
 
 
 

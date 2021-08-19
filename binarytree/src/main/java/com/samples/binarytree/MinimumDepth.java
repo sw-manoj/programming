@@ -14,14 +14,16 @@ public class MinimumDepth {
 		root.right.left = new TreeNode(4);
 		
 		MinimumDepth depth =  new MinimumDepth();
+		System.out.println(depth.minDepth1(root));
 		System.out.println(depth.minDepth(root));
+
 	}
 	
-	public int minDepth1(TreeNode root) {
+	public int minDepth(TreeNode root) {
 		if(root==null){return 0;}
 		if(root.left==null){return minDepth(root.right) +1;}
 		if(root.right==null){return minDepth(root.left)+1;}
-		return Math.max(minDepth(root.left),minDepth(root.right))+1;
+		return Math.min(minDepth(root.left),minDepth(root.right))+1;
 	}
 
 	public int minDepthOptBST(TreeNode root) {
@@ -50,7 +52,7 @@ public class MinimumDepth {
         return 0;
     }
 	
-	public int minDepth(TreeNode root) {
+	public int minDepth1(TreeNode root) {
 		if(root == null)
 		{
 			return 0;

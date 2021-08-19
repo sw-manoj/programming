@@ -12,10 +12,11 @@ public class IntersectList {
 		  head.next.next = four;
 		  
 		  ListNode headB = new ListNode(9);
-		  headB.next = four;
+//		  headB.next = four;
+		  headB.next = new ListNode(8);
 		  
 		  
-		  System.out.println(intList.getIntersectionNode(head, headB).val);
+		  System.out.println(intList.getIntersectionNode(head, headB));
 	}
 	 public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
 	        ListNode p1 = headA;

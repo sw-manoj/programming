@@ -10,11 +10,13 @@ public class RotateImage {
 		tm.printMatrix(matrix);
 //		tm.squareTransposeMatrix(matrix);
 //		tm.reverse(matrix);
-		tm.rotate(matrix);
+//		tm.rotate(matrix);
+		tm.rotate_2ndtry(matrix);
 		System.out.println();
 		tm.printMatrix(matrix);
 		
 	}
+	
 	
 	void rotate(int[][] matrix)
 	{
@@ -84,6 +86,37 @@ public class RotateImage {
 			}
 		}
 	}
+	
+	
+	 public void rotate_2ndtry(int[][] matrix)
+		{
+			int n = matrix.length;
+			
+			for(int i = 0 ; i < (n+1)/2 ; i++)
+			{
+				for(int j = 0 ; j < n/2; j++)
+				{
+					int tmp = matrix[i][j];
+					matrix[i][j] = matrix[n-1-j][i]; 
+					matrix[n-1-j][i] = matrix[n-1-i][n-1-j]; 
+					matrix[n-1-i][n-1-j] = matrix[j][n-1-i];
+					matrix[j][n-1-i] = tmp;
+				}
+			}
+		}
+		
+		void transpose_2ntry(int[][] matrix)
+		{
+			for(int i = 0 ; i  < matrix.length ; i++)
+			{
+				for(int j = i ; j < matrix[0].length ; j++)
+				{
+					int tmp = matrix[i][j];
+					matrix[i][j] = matrix[j][i];
+					matrix[j][i] = tmp;
+				}
+			}
+		}
 }
 
 

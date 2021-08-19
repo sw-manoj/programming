@@ -4,6 +4,19 @@ package com.samples.binarytree;
 public class TrimBST {
 
 //	https://leetcode.com/problems/trim-a-binary-search-tree/
+	
+	
+	public TreeNode trimBST2(TreeNode root, int low, int high) {
+		if(root == null) return null;
+		if(root.val > high) return trimBST2(root.left, low, high);
+		if(root.val < low) return trimBST2(root.right, low, high);
+		
+		root.left = trimBST2(root.left, low, high);
+		root.right = trimBST2(root.right, low, high);
+		
+		return root;
+				
+    }
 	private TreeNode helper(TreeNode root, int low, int high)
 	{
 		if(root == null)
@@ -68,5 +81,8 @@ public class TrimBST {
 		 
 		 TrimBST obj = new TrimBST();
 		 System.out.println(obj.trimBST(s, 1, 3));
+		 
+		 System.out.println(obj.trimBST2(s, 1, 3));
+
 	}
 }

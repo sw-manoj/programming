@@ -2,6 +2,7 @@ package Medium.backtracking;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Permutation {
@@ -11,7 +12,36 @@ public class Permutation {
 		Permutation perm = new Permutation();
 		
 		System.out.println(perm.permute(new int[] {1,2,3}));
+		
+		System.out.println(perm.permute_2ndtry(new int[] {1,2,3}));
+
 	}
+	
+	private void addPerm(int[] nums,LinkedList<Integer> perm ,  List<List<Integer>> result, int index)
+	{
+		if(perm.size() == nums.length)
+		{
+			result.add(new ArrayList(perm));
+			return;
+		}
+		
+		for(int n : nums)
+		{
+			if(!perm.contains(n))
+			{
+				perm.add(n);
+				addPerm(nums, perm, result, index);
+				perm.removeLast();
+			}
+		}
+	}
+	public List<List<Integer>> permute_2ndtry(int[] nums) {
+		List<List<Integer>> result = new ArrayList<>();
+		LinkedList<Integer> perm = new LinkedList();
+		addPerm(nums, perm, result, 0);
+		return result;
+    }
+	
 	public List<List<Integer>> permute(int[] nums) {
 		List<List<Integer>> result = new ArrayList<>();
 		List<Integer> perm = new ArrayList();

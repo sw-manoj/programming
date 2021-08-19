@@ -13,14 +13,54 @@ public class SortColors {
 
 	public static void main(String[] args) {
 		SortColors sc  = new SortColors();
-		int[] nums = {2,1,0,0,2,1};
-		
-		sc.sortColors(nums);
+//		int[] nums = {2,1,0,0,2,1};
+		int[] nums = {2,0,2,1,1,0};
+
+		sc.sortColors_3rdtry(nums);
 		
 		
 		for(int num : nums)
 		{
-			System.out.println(num);
+			System.out.print(num + " ");
+		}
+	}
+	public void sortColors_3rdtry(int[] nums) {
+		int zeroPointer = 0;
+		int twoPointer = nums.length-1;
+		int i = 0;
+		while(i <= twoPointer )
+		{
+			if(nums[i] == 1) {
+				i++;
+			}
+			else if(nums[i] == 0)
+			{
+				swap(nums, zeroPointer, i);
+				i++;
+				zeroPointer++;
+			}
+			else
+			{
+				swap(nums, twoPointer, i);
+				twoPointer--;
+			}
+		}
+	}
+	
+	private void swap(int[] nums, int i, int j) {
+	    int t = nums[i];
+	    nums[i] = nums[j];
+	    nums[j] = t;
+	}
+	public void sortColors_2ndtry(int[] nums) {
+		int l = 0 ; int r = nums.length-1;
+		int curr = 0;
+		
+		while(curr <= r)
+		{
+			if(nums[curr] == 0) swap(nums, l++, curr++);
+			else if(nums[curr] == 2) swap(nums, r--, curr);
+			else curr++;
 		}
 	}
 	public void sortColors(int[] nums) {

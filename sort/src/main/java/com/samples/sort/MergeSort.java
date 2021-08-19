@@ -81,6 +81,7 @@ public class MergeSort
 			sort(arr, l, m); 
 			sort(arr , m+1, r); 
 
+			System.out.println(l + "==" + m + "==" + r);
 			// Merge the sorted halves 
 			merge(arr, l, m, r); 
 		} 

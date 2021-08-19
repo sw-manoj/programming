@@ -13,19 +13,20 @@ public class NumberOfIslands {
 				};
 		
 		char[][] allchar = tocharArray(grid);
-		System.out.println(numIsland.numIslands1(allchar));
+		System.out.println(numIsland.numIslands_2ndtry(allchar));
 		
 		String[][] grid1 = {
 				{"1","1","0","0","0"},
 				{"1","1","0","0","0"},
 				{"0","0","1","0","0"},
-				{	"0","0","0","1","1"}
+				{"0","0","0","1","1"}
 		};
 		
-		System.out.println(numIsland.numIslands1(tocharArray(grid1)));
-		System.out.println(numIsland.numIslands1(tocharArray(new String[][] {{"1","1","1"},{"0","1","0"},{"1","1","1"}} )));
+		System.out.println(numIsland.numIslands_2ndtry(tocharArray(grid1)));
+		System.out.println(numIsland.numIslands_2ndtry(tocharArray(new String[][] {{"1","1","1"},{"0","1","0"},{"1","1","1"}} )));
 		
 	}
+	
 	
 	static char[][] tocharArray(String[][] grid)
 	{
@@ -84,6 +85,44 @@ public class NumberOfIslands {
       
 		
 		return max;
+	}
+	
+	
+	private void markseen1(int r , int c, char[][] grid, int[][] seen)
+	{
+		if(r < 0 || r > grid.length-1 || c < 0 || c > grid[0].length-1 || seen[r][c] == 1 || grid[r][c] == '0')
+		{
+			return;
+		}
+
+		seen[r][c] = 1;
+		
+		markseen1(r-1,c, grid, seen);
+		markseen1(r+1,c, grid, seen);
+		markseen1(r,c-1, grid, seen);
+		markseen1(r,c+1, grid, seen);
+		
+	}
+	
+	public int numIslands_2ndtry(char[][] grid) {
+		int max = 0;
+		
+		int[][] seen = new int[grid.length][grid[0].length];
+		
+		for(int i = 0 ; i < grid.length;i++)
+		{
+			for(int j = 0 ; j  < grid[0].length ; j++)
+			{
+				if(seen[i][j] == 0 && grid[i][j] == '1')
+				{
+					markseen1(i, j, grid, seen);
+					max++;
+				}
+			}
+		}
+		
+		return max;
+		
 	}
 
 }

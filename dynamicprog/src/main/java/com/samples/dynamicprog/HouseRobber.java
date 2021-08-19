@@ -11,15 +11,14 @@ public class HouseRobber {
 		{
 			return 0;
 		}
-//		if(dp[index] > -1) 
-//		{
-//			return dp[index];
-//		}
+		if(dp[index] > -1) 
+		{
+			return dp[index];
+		}
 		
 		int a = helper(nums, index + 1 , total);
 		int b = helper(nums, index + 2 , total )+ nums[index];
 		dp[index] = Math.max(a, b);
-		System.out.println(index + "==" + dp[index]);
 		return dp[index];
 	}
 
@@ -112,7 +111,8 @@ private int[] memo;
 	public static void main(String[] args) {
 		HouseRobber obj = new HouseRobber();
 		System.out.println(obj.rob(new int[] {2,7,9,3,1}));
-		
+		System.out.println(obj.rob1(new int[] {2,7,9,3,1}));
+
 		System.out.println(obj.rob_dp_opt(new int[] {2,7,9,3,1}));
 
 	}

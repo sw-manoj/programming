@@ -29,6 +29,53 @@ public class PopulateNextPointerNode {
 	    }
 	};
 	
+	public Node connect_2ndtry(Node root) {
+		
+		Node next = root;
+		Node left = root;
+		Node dummy = new Node();
+		dummy.next = root;
+		while(next != null)
+		{
+			Node firstLeft = null;
+			left = firstLeft;
+			while(next != null)
+			{
+				if(next.left != null)
+				{
+					if(left != null)
+					{
+						left.next = next.left;
+						left = left.next;
+					}else
+					{
+						left = next.left;
+						firstLeft = left;
+					}
+				}
+				
+				if(next.right != null)
+				{
+	
+					if(left != null)
+					{
+						left.next = next.right;
+						left = left.next;
+					}else
+					{
+						left = next.right;
+						firstLeft = left;
+					}
+				}
+				next = next.next;
+			}
+			
+			next = firstLeft;
+		}
+		
+		
+		return dummy.next;
+	}
 	
 //	perfect binary tree 
 	public Node connect_space_opt(Node root) {

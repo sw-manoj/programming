@@ -8,16 +8,59 @@ public class SwapNodePairs {
 		head.next = new ListNode(2);
 		head.next.next = new ListNode(3);
 		head.next.next.next = new ListNode(4);
+		head.next.next.next.next = new ListNode(5);
+		head.next.next.next.next.next = new ListNode(6);
 		
 		SwapNodePairs sp = new SwapNodePairs();
 		
-		ListNode res = sp.swapPairs(head);
+//		ListNode res = sp.swapPairs(head);
+//		
+//		while(res != null)
+//		{
+//			System.out.print(res.val +  " ");
+//			res = res.next;
+//		}
+//		
+		ListNode res = sp.swapPairs_2ndtry(head);
 		
+		System.out.println();
 		while(res != null)
 		{
-			System.out.println(res.val);
+			System.out.print(res.val + " ");
 			res = res.next;
 		}
+	}
+	
+	public ListNode swapPairs_2ndtry(ListNode head) {
+		ListNode dummy = new ListNode();
+//		ListNode current = head.next;
+//		ListNode prev = head;
+//		dummy.next = current;
+//		
+//		prev.next = current.next;
+//		current.next = prev;
+//		current = prev.next;
+		
+		ListNode current = head;
+		dummy.next = current;
+		ListNode prev = dummy;
+
+		while(current != null &&  current.next != null)
+		{
+//			ListNode tmp = current.next;
+			prev.next = current.next;
+			current.next = current.next.next;
+			
+			prev.next.next = current;
+			prev = current;
+			current =current.next;
+			
+			
+//			current.next = tmp;
+//			prev = prev.next;
+//			current = prev.next;
+		}
+		return dummy.next;
 	}
 
 	public ListNode swapPairs(ListNode head) {

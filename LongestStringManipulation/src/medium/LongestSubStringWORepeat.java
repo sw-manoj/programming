@@ -1,4 +1,4 @@
-package Medium;
+package medium;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +16,15 @@ public class LongestSubStringWORepeat {
 		LongestSubStringWORepeat lssr = new LongestSubStringWORepeat();
 		
 		System.out.println(lssr.lengthOfLongestSubstring("abcabcbb"));
+		System.out.println(lssr.lengthOfLongestSubstring_2ndtry("pwwakew"));
+		System.out.println(lssr.lengthOfLongestSubstring_2ndtry("abba"));
+
+		System.out.println(lssr.lengthOfLongestSubstring_2ndtry(" "));
+
 	}
+	
+	
+
 	public int lengthOfLongestSubstring(String s) {
 		int res = 0;
 		Integer[] chars = new Integer[128];
@@ -41,6 +49,31 @@ public class LongestSubStringWORepeat {
 		
 		return res;
     }
+	
+	public int lengthOfLongestSubstring_2ndtry(String s) {
+		int res = 0;
+		int[] chars = new int[128];
+		int count = 0;
+		int l = 0;
+		for(int i = 0 ; i < s.length() ; i++)
+		{
+			if(chars[s.charAt(i)]  > 0)
+			{
+				l = Math.max(l,  chars[s.charAt(i)]);
+				res = Math.max(res, count);
+				count = i + 1 - l;
+				chars[s.charAt(i)] =  i + 1;
+			}
+			else
+			{
+				chars[s.charAt(i)] =  i + 1;
+				count++;
+			}
+		}
+		
+		return Math.max(res, count);
+    }
+
 	
 	 public int lengthOfLongestSubstring1(String s) {
 	        int n = s.length(), ans = 0;

@@ -96,8 +96,8 @@ public class MinWindowSubStr {
                 {
                 	missing++;
                 }
-                }
                 localLeft++;
+                }
             }
         
         

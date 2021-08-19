@@ -1,4 +1,4 @@
-package com.samples.dp;
+package com.samples.dynamicprog;
 
 import java.util.HashMap;
 import java.util.Map;

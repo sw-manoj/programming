@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class LongestPalindromeSubStr {
+	
+	
 
 	public String longestPalindrome(String s) {
 		if (s == null || s.length() < 1)
@@ -54,47 +56,52 @@ public class LongestPalindromeSubStr {
 ////        }
 //	}
 	
+	
+	public String longestPalindrome_2ndtry(String s) {
+		if (s == null || s.length() < 1)
+			return "";
+		int start = 0, end = 0;
+		int max = 0;
+		for (int i = 0; i < s.length(); i++) {
+			int len1 = expand(s, i, i);
+			int len2 = expand(s, i, i+1);
+			int len = Math.max(len1, len2);
+			if(end-start < len)
+			{
+				start = i - (len-1)/2;
+				end = i + (len/2);
+				System.out.println(len + "==" + start + "==" + end) ;
+			}
+		}
+		
+		return s.substring(start , end+1); 
+    }
+	
+	private int expand(String s , int l, int r)
+	{
+		while(l >= 0 && r < s.length() && s.charAt(l) == s.charAt(r))
+		{
+			l--;
+			r++;
+		}
+		return r-l - 1;
+	}
+	
+	
 	public static void main(String args[] ) throws Exception {
-        /* Sample code to perform I/O:
-         * Use either of these methods for input
-
-        //BufferedReader
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String name = br.readLine();                // Reading input from STDIN
-        System.out.println("Hi, " + name + ".");    // Writing output to STDOUT
-
-        //Scanner
-        Scanner s = new Scanner(System.in);
-        String name = s.nextLine();                 // Reading input from STDIN
-        System.out.println("Hi, " + name + ".");    // Writing output to STDOUT
-
-        */
         
-        // Write your code here
+        LongestPalindromeSubStr obj = new LongestPalindromeSubStr();
+//        System.out.println(obj.longestPalindrome_2ndtry("babad"));
+//        System.out.println(obj.longestPalindrome("babad"));
+        System.out.println(obj.longestPalindrome_2ndtry("babab"));
 
-        Scanner s = new Scanner(System.in);
-//        int n = s.nextInt();
-//        s.nextLine();
         List<String> strs = new ArrayList<String>();
-//        for(int i = 0 ; i < n; i++)
-//        {
-//            strs.add(s.nextLine());
-//        }
-//        System.out.println(strs);
-//        int queNum = s.nextInt();
+
         strs.add("aaaaa");
         strs.add("bbbbb");
         strs.add("ccccc");
         strs.add("ddddd");
         strs.add("eeeee");
-//        for(int i = 0 ; i < queNum ; i++)
-//        {
-//            int l = s.nextInt();
-//            int r = s.nextInt();
-//            int k = s.nextInt();
-//            System.out.println(l + "===" + r);
-//            System.out.println(grpFunc(strs,l,r,k));
-//        }
         System.out.println(grpFunc(strs,3,5,15));
     }
 

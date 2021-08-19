@@ -1,4 +1,4 @@
-package com.samples.dp;
+package com.samples.dynamicprog;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,7 +28,7 @@ public class StairCaseProb {
 			}
 			num[i] = total;
 		}
-		System.out.println(num[2]);
+//		System.out.println(num[2]);
 		return num[n];
 	
 	}
@@ -58,11 +58,11 @@ public class StairCaseProb {
 	
 	public static void main(String[] args) {
 		
-		int n = 7;
-		List<Integer> set =  new ArrayList<Integer>(Arrays.asList(1,3,5));
+		int n = 3;
+		List<Integer> set =  new ArrayList<Integer>(Arrays.asList(1,4,5));
 		int num = numWaysBottomUp(n, set);
 		
-		System.out.println(num);
+		System.out.println(num + "==");
 
 		int[] numArr = new int[n+1];
 		for(int i = 0  ;i < numArr.length ;i ++)

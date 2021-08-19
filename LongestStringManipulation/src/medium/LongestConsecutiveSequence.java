@@ -1,4 +1,4 @@
-package com.samples.list;
+package medium;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 public class LongestConsecutiveSequence {
 
 //	https://leetcode.com/problems/longest-consecutive-sequence/
+	
+//	Given an unsorted array of integers nums, return the length of the longest consecutive elements sequence.
+//
+//			You must write an algorithm that runs in O(n) time.
 	public int longestConsecutive(int[] nums) {
 		Set<Integer> num_set = new HashSet<Integer>();
         for (int num : nums) {
@@ -16,7 +20,7 @@ public class LongestConsecutiveSequence {
         int longestStreak = 0;
 
         for (int num : num_set) {
-        	if(!num_set.contains(num-1))
+        	if(!num_set.contains(num-1)) // used to start from smallest num in increasing seq, e.g ,3,5,2,4 we start enter with 2 and check for upto 5. not not enter for 3,4,5.
         	{
 	        	int j = 1;
 	        	while(num_set.contains(num+j))

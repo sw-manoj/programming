@@ -1,4 +1,4 @@
-package com.samples.list;
+package medium;
 
 public class LongestContinousIncreasingSeq {
 

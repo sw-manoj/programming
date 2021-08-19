@@ -8,9 +8,7 @@ public class CombinationSum {
 
 //	https://leetcode.com/problems/combination-sum/solution/
 	
-	public static void main(String[] args) {
-		
-	}
+	
 	
 	public void backtrack(int[] candidates, int target, int start, LinkedList<Integer> comb, List<List<Integer>> result)
 	{
@@ -37,4 +35,5 @@ public class CombinationSum {
         backtrack(candidates, target, 0, comb, result);
         return result;
     }
+	
 }
