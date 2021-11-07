@@ -114,5 +114,40 @@ public class LongestIncreasingSeq {
 	    public static void main(String[] args) {
 			LongestIncreasingSeq seq = new LongestIncreasingSeq();
 			System.out.println(seq.lengthOfLIS1(new int[] {10,9,2,5,3,7,101,18}));
+			System.out.println(seq.lengthOfLIS3(new int[] {10,9,2,5,3,7,101,18}));
+			System.out.println(seq.lengthOfLIS3(new int[] {0,1,0,3,2,3}));
+
+			System.out.println(seq.lengthOfLIS3(new int[] {7,7,7,7,7,7,7}));
+
+
 		}
+	    
+	    
+	    public int lengthOfLIS3(int[] nums) {
+	    	
+	    	if(nums.length == 0)
+	    	{
+	    		return -1;
+	    	}
+	    	int max = 1;
+	    	int n = nums.length;
+	    	int[] dp = new int[n];
+	    	dp[0] = 1;
+	    	for (int i = 1 ; i < n ; i++)
+	    	{
+	    		int maxVal = 0;
+	    		for(int j = 0; j < i ; j++)
+	    		{
+	    			if(nums[j] < nums [i])
+	    			{
+	    				maxVal = Math.max(maxVal, dp[j]); 
+	    			}
+	    		}
+	    		maxVal++;
+	    		dp[i] = maxVal;
+	    		max = Math.max(max, dp[i]);
+	    	}
+	    	return max;
+	    	
+	    }
 }

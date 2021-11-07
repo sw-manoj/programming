@@ -173,17 +173,37 @@ public class TreeTraversal {
 
 		TreeTraversal inorder = new TreeTraversal();
 
-		System.out.println(inorder.preorderTraversal(root));
-
-		System.out.println(inorder.preorderTraversal_iter(root));
+//		System.out.println(inorder.preorderTraversal(root));
+//
+//		System.out.println(inorder.preorderTraversal_iter(root));
+//		
+//		System.out.println(inorder.inorderTraversal(root));
+//
+//		System.out.println(inorder.inorderTraversal_iter(root));
+//		
+//		System.out.println(inorder.postorderTraversal(root));
+//
+//		System.out.println(inorder.postorderTraversal_iter(root));
 		
-		System.out.println(inorder.inorderTraversal(root));
+		TreeNode node = inorder.traverse(new int[] {2,1,0,5,0,0,3,4,0,0,0});
+		System.out.println(inorder.preorderTraversal(node));
 
-		System.out.println(inorder.inorderTraversal_iter(root));
-		
-		System.out.println(inorder.postorderTraversal(root));
+	}
+	
+	int index;
+	 TreeNode traverse(int[] preArr)
+	{
+		if(preArr[index] == 0)
+		{
+		return null;
+		}
+		TreeNode node = new TreeNode(preArr[index]);
+		index++;
+		node.left = traverse(preArr);
+		index++;
+		node.right = traverse(preArr);
 
-		System.out.println(inorder.postorderTraversal_iter(root));
+		return node;
 
 	}
 }

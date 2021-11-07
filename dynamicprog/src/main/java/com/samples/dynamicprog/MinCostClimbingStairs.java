@@ -1,5 +1,6 @@
 package com.samples.dynamicprog;
 
+//https://leetcode.com/problems/min-cost-climbing-stairs/
 public class MinCostClimbingStairs {
 
 	public static void main(String[] args) {

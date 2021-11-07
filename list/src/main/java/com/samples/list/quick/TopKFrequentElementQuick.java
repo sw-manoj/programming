@@ -17,7 +17,7 @@ public class TopKFrequentElementQuick extends TopKFrequentElement{
 									.boxed().collect(Collectors.<Integer>toList()));
 		
 		
-		System.out.println(Arrays.stream(obj.topKFrequent(new int[] {1,1,4,4,1,2,2,3,5,5,4}, 2))
+		System.out.println(Arrays.stream(obj.topKFrequent(new int[] {1,1,4,4,4,1,2,2,3,5,5,4,4}, 2))
 				.boxed().collect(Collectors.<Integer>toList()));
 	}
 	
@@ -51,6 +51,7 @@ public class TopKFrequentElementQuick extends TopKFrequentElement{
         
         quickSelect(0, n-1, n-k);
         
+        System.out.println(Arrays.toString(uniqueEle));
         int[] res = new int[k];
         int c = n-k;
         for(int j = 0; j <k; j++)
@@ -87,7 +88,7 @@ public class TopKFrequentElementQuick extends TopKFrequentElement{
 		int store_index = l;
 		for(int i = l ; i <= r ;i++)
 		{
-			if(uniqueMap.get(uniqueEle[i]) < uniqueMap.get(uniqueEle[index])  )
+			if(uniqueMap.get(uniqueEle[i]) > uniqueMap.get(uniqueEle[index])  )
 			{
 				swap(i, store_index);
 				store_index++;

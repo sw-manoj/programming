@@ -1,5 +1,6 @@
 package easyprob;
 
+
 final class TreeInfo {
 	  public final int height;
 	  public final boolean balanced;
@@ -9,6 +10,19 @@ final class TreeInfo {
 	    this.balanced = balanced;
 	  }
 	}
+
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode() {}
+    TreeNode(int val) { this.val = val; }
+    TreeNode(int val, TreeNode left, TreeNode right) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
+}
 
 public class BalancedTree {
 

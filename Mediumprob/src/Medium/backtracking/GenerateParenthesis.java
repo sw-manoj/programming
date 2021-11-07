@@ -14,6 +14,7 @@ public class GenerateParenthesis {
 		System.out.println(gp.generateParenthesis_2ndtry(3));
 
 	}
+
 	
 	private void genParenthesis(int count, int n, String str, List<String> res, int open, int close)
 	{

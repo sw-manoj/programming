@@ -22,6 +22,8 @@ public class MergeIntervals {
 			end = e;
 		}
 	}
+	
+	
 	 public int[][] merge1(int[][] intervals) {
 		 if(intervals.length == 0)
 		 {
@@ -130,9 +132,34 @@ public class MergeIntervals {
 	 public static void main(String[] args) {
 		 MergeIntervals merger = new MergeIntervals();
 		 merger.merge(new int[][] {{1,4},{1,5}});
-		 merger.print(merger.merge2(new int[][] {{1,3},{3,5},{9,11}}));
-		 merger.print(merger.merge2(new int[][] {{1,10},{3,5},{9,11}}));
+//		 merger.print(merger.merge2(new int[][] {{1,3},{3,5},{9,11}}));
+//		 merger.print(merger.merge2(new int[][] {{1,10},{3,5},{9,11}}));
+		 
+		 merger.print(merger.merge_2ntry(new int[][] {{1,10},{3,5},{9,11}}));
+		 merger.print(merger.merge_2ntry(new int[][] {{1,3},{3,5},{9,11}}));
+
+
 	}
+	 
+	 public int[][] merge_2ntry(int[][] intervals) {
+			Arrays.sort(intervals, (a,b) -> Integer.compare(a[0], b[0]));
+			 LinkedList<int[]> res = new LinkedList<>();
+
+			int[] prev = intervals[0];
+			res.add(intervals[0]);
+			for( int i = 1; i < intervals.length ; i++)
+			{
+				if(res.getLast()[1] < intervals[i][0])
+				{
+					res.add(intervals[i]);
+				}
+				else if(res.getLast()[1] < intervals[i][1])
+				{
+					res.getLast()[1] = intervals[i][1];
+				}
+			}
+			return res.toArray(new int[res.size()][2]);
+		}
 	 
 	 void print( int[][] interval)
 	 {

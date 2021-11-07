@@ -15,13 +15,40 @@ public class LongestSubStringWORepeat {
 		
 		LongestSubStringWORepeat lssr = new LongestSubStringWORepeat();
 		
-		System.out.println(lssr.lengthOfLongestSubstring("abcabcbb"));
+		System.out.println(lssr.lengthOfLongestSubstring11("abcabcbb"));
+		System.out.println(lssr.lengthOfLongestSubstring11(" "));
+
+		System.out.println(lssr.lengthOfLongestSubstring("pwwakew"));
+		System.out.println(lssr.lengthOfLongestSubstring11("pwwakew"));
+
 		System.out.println(lssr.lengthOfLongestSubstring_2ndtry("pwwakew"));
 		System.out.println(lssr.lengthOfLongestSubstring_2ndtry("abba"));
 
-		System.out.println(lssr.lengthOfLongestSubstring_2ndtry(" "));
+		System.out.println(lssr.lengthOfLongestSubstring_2ndtry(""));
 
 	}
+	
+	public int lengthOfLongestSubstring11(String s) {
+		int max = 0;
+		Map<Character, Integer> cache = new HashMap<>();
+		
+		int l = 0;
+		int e = 0;
+		
+		while(e < s.length())
+		{
+			char c = s.charAt(e);
+			if(cache.containsKey(c))
+			{
+				l = Math.max(l, cache.get(c) + 1) ;
+			}
+			
+			max = Math.max( e - l + 1 , max);
+			cache.put(c, e);
+			e++;
+		}
+        return max;
+    }
 	
 	
 

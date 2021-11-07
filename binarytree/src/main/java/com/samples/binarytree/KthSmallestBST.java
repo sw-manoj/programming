@@ -51,7 +51,7 @@ public class KthSmallestBST {
 //	What if the BST is modified (insert/delete operations) often and you need to find the kth smallest frequently? 
 //	How would you optimize the kthSmallest routine?
 	
-	
+	//building infix traverse list with next and prev pointers in tree nodes.
 	public void buildList(TreeNodeList node)
 	{
 		Stack<TreeNodeList> stack = new Stack<TreeNodeList>();

@@ -60,6 +60,7 @@ public class NextPermutation {
         
 		int i = nums.length - 2;
 		
+		//find small adj num from last. and make note of that index
 		while(i >= 0 && nums[i] >= nums[i+1])
 		{
 			i--;
@@ -68,10 +69,12 @@ public class NextPermutation {
 		if(i >= 0)
 		{
 			int j = nums.length-1;
+			//move from last until we find num greater than the index foudn above
 			while(nums[j] <= nums[i])
 			{
 				j--;
 			}
+//			once found swap it
 			swap(nums, i ,j );
 		}
 		reverse(nums, i + 1);

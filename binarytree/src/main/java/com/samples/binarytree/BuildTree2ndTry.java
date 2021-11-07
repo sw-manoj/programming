@@ -7,7 +7,7 @@ public class BuildTree2ndTry {
 
 	Map<Integer, Integer> inorderMap = new HashMap<Integer, Integer>();
 	int[] inorder; int[] postorder;
-	public TreeNode buildTree(int[] inorder, int[] postorder) {
+	public TreeNode buildTree1(int[] inorder, int[] postorder) {
         
 		for(int i = 0 ; i < inorder.length; i++)
 		{
@@ -43,13 +43,42 @@ public class BuildTree2ndTry {
 
 	}
 	
+	Map<Integer, Integer> inOrdermap = new HashMap<Integer, Integer>();
+	public TreeNode buildTree(int[] preorder, int[] inorder) {
+        
+		for(int i = 0 ; i < inorder.length ; i++)
+		{
+			inOrdermap.put(inorder[i], i);
+		}
+		
+		return createTree(preorder, inorder, 0, inorder.length);
+    }
+	
+	int preOrderIndex = 0;
+	
+	TreeNode createTree(int[] preOrder,int[] inOrder, int l, int r)
+	{
+		if(l > r || preOrderIndex >= preOrder.length)
+		{
+			return null;
+		}
+		TreeNode node = new TreeNode(preOrder[preOrderIndex]);
+		preOrderIndex++;
+		int inIndex = inOrdermap.get(node.val);
+		node.left = createTree(preOrder, inOrder, l, inIndex-1);
+		node.right = createTree(preOrder, inOrder, inIndex +1 , r);
+
+		return node;
+	}
+	
 	public static void main(String[] args) {
 		int[] inorder = {9,3,15,20,7};
 		int[] postorder = {9,15,7,20,3};
-		
+		int[] preorder = {3, 9, 20, 15, 7};
+
 		BuildTree2ndTry treeBuilder = new BuildTree2ndTry();
 		
-		TreeNode root = treeBuilder.buildTree(inorder, postorder);
+		TreeNode root = treeBuilder.buildTree(inorder, preorder);
 		TreeTraversal treeTraverse = new TreeTraversal();
 		
 		System.out.println(treeTraverse.inorderTraversal(root));

@@ -1,4 +1,12 @@
 package com.samples.list;
+
+
+class ListNode
+{
+	ListNode next;
+	int val;
+	ListNode(int v) {val = v;}
+}
 //https://leetcode.com/problems/remove-duplicates-from-sorted-list/submissions/
 public class RemoveDupSortedList {
 
