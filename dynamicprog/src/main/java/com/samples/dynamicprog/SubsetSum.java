@@ -3,10 +3,46 @@ package com.samples.dynamicprog;
 public class SubsetSum {
 //	Let's take a problem, given a set, count how many subsets have sum of elements greater than or equal to a given value.
 
+	public static boolean subsetSum(int[] A, int n, int k)
+	{
+		// return true if the sum becomes 0 (subset found)
+		if (k == 0) {
+			return true;
+		}
+
+		// base case: no items left, or sum becomes negative
+		if (n < 0 || k < 0) {
+			return false;
+		}
+
+		// Case 1. Include the current item `A[n]` in the subset and recur
+		// for the remaining items `n-1` with the remaining total `k-A[n]`
+		boolean include = subsetSum(A, n - 1, k - A[n]);
+
+		// Case 2. Exclude the current item `A[n]` from the subset and recur for
+		// the remaining items `n-1`
+		boolean exclude = subsetSum(A, n - 1, k);
+
+		// return true if we can get subset by including or excluding the
+		// current item
+		return include || exclude;
+	}
 
 	static int occBit = 0;
 			static int occDp = 0;
 	public static void main(String[] args) {
+
+		int[] A = { 7, 3, 2, 5, 8 };
+		int k = 14;
+
+		if (subsetSum(A, A.length - 1, k)) {
+			System.out.print("Subsequence with the given sum exists");
+		}
+		else {
+			System.out.print("Subsequence with the given sum does not exist");
+		}
+
+
 		int[] set = {1,2,3,4};
 		int tot = 3;
 		int res = subSum(set, tot);

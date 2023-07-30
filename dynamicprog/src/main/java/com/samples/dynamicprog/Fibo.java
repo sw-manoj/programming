@@ -7,6 +7,26 @@ public class Fibo {
 		int res = fibo.climbStairs(4);
 		System.out.println(res);
 	}
+
+	public int climbStairs1(int n) {
+		return climbStairsHelper(n, new Integer[n], 0);
+	}
+
+	public int climbStairsHelper(int n, Integer[] dp, int index) {
+		if(index > n)
+		{
+			return 0;
+		}
+		if(index == n)
+		{
+			return 1;
+		}
+		if(dp[index] != null) {
+			return dp[index];
+		}
+		dp[index] = climbStairsHelper(n, dp, index+1) + climbStairsHelper(n,dp, index+2);
+		return dp[index];
+	}
 	
     public int fib(int N) {
         

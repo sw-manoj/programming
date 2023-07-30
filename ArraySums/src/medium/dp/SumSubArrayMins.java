@@ -31,11 +31,61 @@ public class SumSubArrayMins {
         		sum+= dp[i][j];
         	}
         }
-        
+
         
         
         return (int) (sum%(Math.pow(10, 9) + 7));
     }
+
+	public int sumSubarrayMins2023(int[] arr) {
+
+		int[] dp = new int[arr.length];
+
+		Stack<Integer> stack = new Stack();
+		int totalSum = 0;
+		for(int i = 0 ; i <= arr.length ;i++) {
+
+			while(!stack.isEmpty() && (i == arr.length || stack.peek() >= arr[i])) {
+				int mid = stack.pop();
+				int prevSmallestIndex = -1;
+				if(!stack.isEmpty()) {
+					prevSmallestIndex = stack.peek();
+
+				}
+				int sumContribution = (mid-prevSmallestIndex) * (i - mid) * arr[mid];
+				totalSum += sumContribution;
+			}
+			stack.push(i);
+		}
+		return totalSum;
+	}
+
+	public int sumSubarrayMinsDp2023(int[] arr) {
+//		3,4,5,2
+		int[] dp = new int[arr.length];
+
+		Stack<Integer> stack = new Stack();
+		int totalSum = 0;
+		for(int i = 0 ; i < arr.length ;i++) {
+
+			while (!stack.isEmpty() && (arr[stack.peek()] >= arr[i])) {
+				stack.pop();
+			}
+			int prevSmallestElementSum = 0;
+			int prevSmallestIndex = -1;
+			if (!stack.isEmpty()) {
+				prevSmallestElementSum = dp[stack.peek()];
+				prevSmallestIndex = stack.peek();
+			}
+			int sumContribution = prevSmallestElementSum + ((i - prevSmallestIndex) * arr[i]) ;
+			dp[i] = sumContribution;
+			stack.push(i);
+		}
+		for(int count : dp){
+			totalSum +=count;
+		}
+		return totalSum;
+	}
 	
 	//time exceed
 	public int sumSubarrayMins2(int[] arr) {
