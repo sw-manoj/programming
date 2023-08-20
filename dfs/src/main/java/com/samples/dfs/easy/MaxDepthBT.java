@@ -14,6 +14,14 @@ class TreeNode {
     }
 }
 public class MaxDepthBT {
+
+
+	public int maxDepth1(TreeNode root) {
+		if(root == null) return 0;
+
+		return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
+	}
+
 	
 	public static void main(String[] args) {
 		TreeNode root = new TreeNode(5);

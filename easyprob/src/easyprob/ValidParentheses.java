@@ -12,7 +12,22 @@ public class ValidParentheses {
 		put('}', '{');
 		put(']', '[');
 	}};
-	
+
+	public boolean isValid2(String s) {
+		Stack<Character> stack = new Stack<>();
+		for(Character ch : s.toCharArray())
+		{
+			if(parenMap.containsKey(ch))
+			{
+				if(stack.isEmpty() || stack.pop() != parenMap.get(ch)) return false;
+			}
+			else
+			{
+				stack.push(ch);
+			}
+		}
+		return true;
+	}
 
 	public static void main(String[] args) {
 		ValidParentheses obj = new ValidParentheses();
@@ -41,4 +56,8 @@ public class ValidParentheses {
 		}
         return stack.isEmpty();
     }
+
+
+
+
 }

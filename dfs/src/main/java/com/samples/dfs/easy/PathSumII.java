@@ -41,4 +41,27 @@ public class PathSumII {
 		
 		System.out.println(obj.pathSum(root, 14));
 	}
+
+	int ans = 0;
+	public int maxPathSum(TreeNode root) {
+		 maxPathSumHelper(root);
+		 return ans;
+	}
+
+	public int maxPathSumHelper(TreeNode root) {
+		if(root == null) return 0;
+
+		int left = Math.max(maxPathSumHelper(root.left), 0);
+		int right = Math.max(maxPathSumHelper(root.right), 0);
+
+		int currentMax = Math.max(root.val + Math.max(left, right), left + right + root.val);
+		if(currentMax > ans) {
+			ans = currentMax;
+		}
+
+		return root.val + Math.max(left, right);
+
+
+	}
+
 }

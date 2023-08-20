@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class LRUCache {
+public class ache {
 	
 	class Entry
 	{

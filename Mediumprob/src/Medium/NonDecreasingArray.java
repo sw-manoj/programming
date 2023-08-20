@@ -25,7 +25,7 @@ public class NonDecreasingArray {
                 
                 numViolations++;
                 
-                if (i < 2 || nums[i - 2] <= nums[i]) {
+                if (i < 2 || nums[i - 2 ] <= nums[i]) {
                     nums[i - 1] = nums[i];
                 } else {
                     nums[i] = nums[i - 1];

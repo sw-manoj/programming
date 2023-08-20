@@ -2,6 +2,7 @@ package com.samples.random;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.LinkedBlockingDeque;
@@ -38,10 +39,10 @@ public class BinaryTreeLevelOrderTraversal {
 	    	if(root == null) return null; 
 	    	
 	    	queue.add(root);
-	    	List<List<Integer>> res = new ArrayList<List<Integer>>();
+			LinkedList<List<Integer>> res = new LinkedList<>();
 	    	while(!queue.isEmpty())
 	    	{
-	    		res.add(addChild(queue));
+	    		res.addFirst(addChild(queue));
 	    	}
 	    	
 	    	Collections.reverse(res);

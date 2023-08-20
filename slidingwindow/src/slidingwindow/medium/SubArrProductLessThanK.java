@@ -26,7 +26,7 @@ public class SubArrProductLessThanK {
 		while(e < nums.length)
 		{
 			prod *= nums[e];
-			if(s < e && prod >= k )
+			while(s < e && prod >= k )
 			{
 				prod = prod/nums[s];
 				s++;
@@ -41,8 +41,9 @@ public class SubArrProductLessThanK {
 	}
 	public static void main(String[] args) {
 		SubArrProductLessThanK obj = new SubArrProductLessThanK();
-		System.out.println(obj.numSubarrayProductLessThanK(new int [] {10,9,10,4,3,8,3,3,6,2,10,10,9,3}, 19));
-		System.out.println(obj.numSubarrayProductLessThanK(new int [] {10,5,2,3}, 100));
+//		System.out.println(obj.numSubarrayProductLessThanK(new int [] {10,9,10,4,3,8,3,3,6,2,10,10,9,3}, 19));
+//		System.out.println(obj.numSubarrayProductLessThanK(new int [] {10,5,2,3}, 100));
+		System.out.println(obj.numSubarrayProductLessThanK(new int [] {2,2,60}, 100));
 
 	}
 }

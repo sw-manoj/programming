@@ -1,20 +1,43 @@
 package com.samples.list;
 
+import java.util.Arrays;
+
 //https://leetcode.com/problems/rotate-array/solution/
 public class RotateArray {
 	public static void main(String[] args) {
 		RotateArray obj = new RotateArray();
 		
-		int[] nums = {1,2,3,4, 5,6,7};
-		obj.rotate_cyc(nums,4);
+//		int[] nums = {1,2,3,4, 5,6,7};
+//		obj.rotate3(nums,3);
 		
-//		int[] nums1 = {1,2,3,4, 5,6,7};
-//		obj.rotate(nums1, 7);
-		
-		
-		for(int n : nums)
-		{
-			System.out.print(n);
+		int[] nums1 = {-1,-100,3,99};
+		obj.rotate3(nums1, 2);
+
+		System.out.println(Arrays.toString(nums1));
+		System.out.println(Arrays.toString(nums1));
+
+	}
+
+	public void rotate3(int[] nums, int k) {
+
+		k = k % nums.length;
+		int current_step;
+		int start = 0;
+		int count = 0;
+
+		while(count < nums.length) {
+			int currentIndex = start;
+			int currentElement = nums[currentIndex];
+
+			do  {
+				int nextIndex = (currentIndex + k) % nums.length;
+				int nextElement = nums[nextIndex];
+				nums[nextIndex] = currentElement;
+				currentIndex = nextIndex;
+				currentElement = nextElement;
+				count++;
+			} while(currentIndex != start);
+			start++;
 		}
 	}
 

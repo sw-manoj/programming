@@ -20,6 +20,20 @@ class TreeNode {
  
 public class IsValidBST {
 
+
+	public boolean isValidBST1(TreeNode root) {
+		return isValidBSTHelper(root, null, null);
+	}
+
+	private boolean isValidBSTHelper(TreeNode root, TreeNode low, TreeNode high) {
+		if(root == null) return true;
+
+		if( low != null  && root.val <= low.val) return false;
+		if( high != null  && root.val >= high.val) return false;
+
+		return isValidBSTHelper(root.left, low, root) && isValidBSTHelper(root.right, root, high);
+	}
+
 	public static void main(String[] args) {
 		TreeNode root = new TreeNode(5);
 		root.left = new TreeNode(4);

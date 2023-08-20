@@ -4,6 +4,7 @@ public class MergeKSortedList {
 	
 	
     public ListNode mergeKLists2(ListNode[] lists) {
+		if(lists == null || lists.length == 0)  return null;
 
     	return helper(lists, 0, lists.length-1);
     }
@@ -15,7 +16,7 @@ public class MergeKSortedList {
     		int mid = start + (end-start)/2;
     		return merge(helper(lists, start, mid), helper(lists, mid+1, end));
     	}
-    	return null;
+    	return lists[start];
     }
 	
     public ListNode mergeKLists(ListNode[] lists) {

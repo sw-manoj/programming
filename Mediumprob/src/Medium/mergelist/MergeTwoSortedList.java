@@ -29,7 +29,10 @@ public class MergeTwoSortedList {
 		l2.next.next = new ListNode(4);
 		
 		MergeTwoSortedList obj = new MergeTwoSortedList();
-		System.out.println(obj.mergeTwoLists2(l1, l2));
+//		System.out.println(obj.mergeTwoLists2(l1, l2));
+
+		System.out.println(obj.mergeTwoLists3(l1, l2));
+
 	}
 	
 	public ListNode mergeTwoLists2(ListNode l1, ListNode l2) {
@@ -97,6 +100,7 @@ public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         return helper(l1, l2);
     }
 
+
 private ListNode helper(ListNode l1, ListNode l2)
 {
 	ListNode newNode = null;
@@ -136,4 +140,33 @@ private ListNode helper(ListNode l1, ListNode l2)
 	
 	
 }
+
+
+	public ListNode mergeTwoLists3(ListNode l1, ListNode l2) {
+		ListNode head = new ListNode(0);
+		ListNode dummy = head;
+		while(l1 != null && l2 != null) {
+			if(l1.val < l2.val)
+			{
+				head.next = l1;
+				l1 = l1.next;
+			}
+			else {
+				head.next = l2;
+				l2  = l2.next;
+			}
+			head = head.next;
+		}
+
+		if(l1 != null)
+		{
+			head.next = l1;
+		}
+
+		if(l2 != null)
+		{
+			head.next = l2;
+		}
+		return dummy.next;
+	}
 }

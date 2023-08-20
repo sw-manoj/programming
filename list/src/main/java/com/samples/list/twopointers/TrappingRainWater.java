@@ -34,6 +34,31 @@ public class TrappingRainWater {
     	
     	return max;
     }
+
+
+	public int trap5(int[] height) {
+
+		Stack<Integer> minStack = new Stack<>();
+		int totalArea = 0;
+		for(int i = 0 ; i < height.length ; i++) {
+
+			while(!minStack.isEmpty() && height[minStack.peek()] < height[i] ) {
+
+				int prevElem = minStack.pop();
+				if(minStack.isEmpty()) {
+					break;
+				}
+				int prevMaxElem = minStack.peek();
+				int dist = i - prevMaxElem - 1;
+				int maxHeight = Math.min(height[i], height[prevMaxElem]);
+
+				totalArea += (maxHeight - height[prevElem]) * dist;
+
+			}
+			minStack.push(i);
+		}
+		return totalArea;
+	}
     
     // using dp, left and right max prefix array as DP
     //this is accepted solution.

@@ -34,10 +34,16 @@ public class CourseScheduleII {
 		stack.push(course);
 	}
 
+	//not working
 	public int[] findOrder(int numCourses, int[][] prerequisites) {
 
 		if (prerequisites.length == 0 && numCourses >= 1) {
-			return new int[] {};
+			int[] res = new int[numCourses];
+
+			for(int i = 0 ; i < numCourses; i++) {
+				res[i] = i;
+			}
+			return res;
 		}
 
 		for (int[] nums : prerequisites) {
@@ -68,16 +74,16 @@ public class CourseScheduleII {
 
 	public static void main(String[] args) {
 		CourseScheduleII obj = new CourseScheduleII();
-		print(obj.findOrder(2, new int[][] { { 1, 0 } }));
+//		print(obj.findOrder(2, new int[][] { { 1, 0 } }));
+//
+//		obj = new CourseScheduleII();
+//		print(obj.findOrder_topo(2, new int[][] { { 1, 0 }, { 0, 1 } }));
 
 		obj = new CourseScheduleII();
-		print(obj.findOrder_topo(2, new int[][] { { 1, 0 }, { 0, 1 } }));
+		print(obj.findOrder(4, new int[][] { { 1, 0 }, { 2, 0 }, { 3, 1 }, { 3, 2 }, {0, 3} }));
 
-		obj = new CourseScheduleII();
-		print(obj.findOrder_topo(4, new int[][] { { 1, 0 }, { 2, 0 }, { 3, 1 }, { 3, 2 } }));
-
-		obj = new CourseScheduleII();
-		print(obj.findOrder_topo(1, new int[][] {} ));
+//		obj = new CourseScheduleII();
+//		print(obj.findOrder_topo(1, new int[][] {} ));
 	}
 
 	public static void print(int[] res) {

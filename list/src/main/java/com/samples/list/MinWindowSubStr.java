@@ -1,62 +1,62 @@
 package com.samples.list;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MinWindowSubStr {
 
 	public String mySol(String s ,String t)
 	{
-		 int no_of_chars = 256; 
 
-		 
-		 char[] sArr = new char[no_of_chars];
-		 char[] tArr = new char[no_of_chars];
-		 
-		 for(char c: t.toCharArray())
-		 {
-			 tArr[c]++;
-		 }
-		 
-		 int count =0;int start = 0; int finalStartINdex = 0; 
-		 int minLen =Integer.MAX_VALUE;
-		 
-		 
-		 for(int j = 0 ; j < s.length() ; j ++)
-		 {
-			 sArr[s.charAt(j)]++;
-			 
-			 if(tArr[s.charAt(j)] > 0)
-			 {
-				 count++;
-			 }
-			 
-			 if(count == t.length())
-			 {
-				 //extra char's coming after reaching count , we keep adding them in line 25, 
-				 //and remove prev added char in this if condn thus checing all window options.
-				 while(sArr[s.charAt(start)] > tArr[s.charAt(start)] || tArr[s.charAt(start)] ==0)
-				 {
-					 if(sArr[s.charAt(start)] > tArr[s.charAt(start)])
-					 {
-						 sArr[s.charAt(start)]--; 
-					 }
-					 start++;
-				 }
-				 
-				 int windowLen = j - start + 1;
-				 if(minLen > windowLen)
-				 {
-					 finalStartINdex = start;
-					 minLen = windowLen;
-				 }
-			 }
-		 }
-		 
-		// If no window found 
-	        if (finalStartINdex == -1) 
-	        { 
-	        System.out.println("No such window exists"); 
-	        return ""; 
-	        } 
-		 return s.substring(finalStartINdex, finalStartINdex + minLen);
+		if(t.length() > s.length()) return  "";
+		Map<Character, Integer> tMap = new HashMap<>();
+		for(char c : t.toCharArray()) {
+			int count = tMap.getOrDefault(c, 0);
+			tMap.put(c, count+1);
+		}
+
+		int minStartIndex = -1;
+		int minEndIndex = 0;
+		int minWindowLen = Integer.MAX_VALUE;
+		int currentWindowLen = 0;
+		Map<Character, Integer> windowMap = new HashMap<>();
+		int tLen = t.length();
+		int start = 0;
+		int end = 0;
+		int matchingCharLen = 0;
+
+		while(end < s.length() ) {
+
+			char currChar = s.charAt(end);
+			int charFreq = windowMap.getOrDefault(currChar, 0);
+			windowMap.put(currChar, charFreq+1);
+			currentWindowLen++;
+			if(tMap.containsKey(currChar) && tMap.get(currChar) > 0 && windowMap.get(currChar) <= tMap.get(currChar)) {
+				matchingCharLen++;
+			}
+
+			while(matchingCharLen == tLen) {
+				if(end-start+1 < minWindowLen) {
+					minWindowLen = end-start+1;
+					minStartIndex = start;
+					minEndIndex = end;
+				}
+				char startChar = s.charAt(start);
+
+				if(tMap.containsKey(startChar) && tMap.get(startChar) > 0 && windowMap.get(startChar) <= tMap.get(startChar)) {
+					matchingCharLen--;
+				}
+				int count = windowMap.get(startChar);
+				windowMap.put(startChar, count-1);
+				start++;
+			}
+			end++;
+		}
+		if(minStartIndex == -1) {
+			return "";
+		}
+
+		return s.substring(minStartIndex, minEndIndex + 1);
 	}
     public String minWindow(String s, String t) {
         //Fault condition.

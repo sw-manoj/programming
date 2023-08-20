@@ -28,6 +28,12 @@ class TreeNode {
 //Without Math.max in left_gain and right_gain, Result: 7
 //With Math.max in left_gain and right_gain, Result: 9
 //So 9 is right which is the max path 7 -> 2, i.e root to right
+
+//if every node is negative then max negative is the final answer  which is taken care  but below condition
+//		max = Math.max(max, node.val + leftmax + rightmax);
+//here only node.val value is taken because of of left max and right max is 0. hence node.val is considered for max.so mex negative will be the final answer.
+//		int leftmax = Math.max(traverse(node.left), 0 );
+//		int rightmax = Math.max(traverse(node.right), 0 );
 public class MaxPathSum {
 
 	int max = Integer.MIN_VALUE;

@@ -13,8 +13,8 @@ public class MergeSortedArray {
 		mergeSorArr.merge(nums1, 4, nums2, 3);
 		System.out.println(Arrays.toString(nums1));
 		
-		mergeSorArr.merge1(nums1, 4, nums2, 3);
-		System.out.println(Arrays.toString(nums1));
+//		mergeSorArr.merge1(nums1, 4, nums2, 3);
+//		System.out.println(Arrays.toString(nums1));
 	}
 	
 	public void merge1(int[] nums1, int m, int[] nums2, int n) {
@@ -72,4 +72,5 @@ public class MergeSortedArray {
 			}
 		}
     }
+
 }

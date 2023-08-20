@@ -46,7 +46,36 @@ public class OddEvenList {
 //        System.out.println(evenDummy);
 		return oddDummy.next;
     }
-	
+
+	public ListNode oddEvenList1(ListNode head) {
+		ListNode dummy = new ListNode(0);
+
+		ListNode evenList = new ListNode(0);
+		ListNode evenHead = evenList;
+
+		ListNode oddList = new ListNode(0);
+		ListNode oddHead = oddList;
+
+		int index = 1;
+
+		while(head != null) {
+			if(index % 2 != 0) {
+				oddList.next = head;
+				oddList = oddList.next;
+			}else{
+				evenList.next = head;
+				evenList = evenList.next;
+			}
+			head = head.next;
+			index++;
+		}
+		evenList.next = null;
+		oddList.next = evenHead.next;
+		dummy.next = oddHead.next;
+		return dummy.next;
+	}
+
+
 	public static void main(String[] args) {
 		OddEvenList obj = new OddEvenList();
 		
