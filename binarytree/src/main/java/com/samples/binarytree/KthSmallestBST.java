@@ -35,10 +35,10 @@ public class KthSmallestBST {
 			return ;
 		}
 		arr.add(node.val);
-		if(k == arr.size())
-		{
-			return ;
-		}
+//		if(k == arr.size())
+//		{
+//			return ;
+//		}
 		helper(node.right, k, arr);
 	}
 	public int kthSmallest(TreeNodeList root, int k) {

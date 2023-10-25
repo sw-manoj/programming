@@ -3,7 +3,7 @@ package com.samples.dfs.medium;
 import java.util.LinkedList;
 import java.util.Queue;
 //https://leetcode.com/problems/maximum-width-of-binary-tree/
-public class WidthOfBinaryTree {
+public class  WidthOfBinaryTree {
 
 	class Node
 	{

@@ -1,5 +1,9 @@
 package Medium;
 
+import java.util.HashMap;
+import java.util.Map;
+
+//https://leetcode.com/problems/edit-distance/submissions/
 public class EditDistance {
 	
 	//works good
@@ -47,6 +51,39 @@ public class EditDistance {
 		
 		return dp[0][0];
 	}
+
+
+	public int minDistance(String word1, String word2) {
+		return minDistanceHelper(word1, word2, 0, 0, word1.length(), word2.length(), new HashMap<>());
+	}
+
+	public int minDistanceHelper(String word1, String word2, int i, int j, int n, int m, Map<String, Integer> memo) {
+
+		if(i >= n) {
+			return m-j;
+		}
+		if(j >= m) {
+			return n-i;
+		}
+
+		String currentKey = i + "-" + j;
+		if(memo.containsKey(currentKey)) {
+			return memo.get(currentKey);
+		}
+
+		int ans = Integer.MAX_VALUE;
+		if(word1.charAt(i) == word2.charAt(j)) {
+			ans = minDistanceHelper(word1, word2, i+1, j+1, n,m, memo);
+		}
+		else {
+			int insertOp = minDistanceHelper(word1, word2, i+1, j, n , m ,memo);
+			int deleteOp = minDistanceHelper(word1, word2, i, j+1, n , m ,memo);
+			int replaceOp = minDistanceHelper(word1, word2, i+1, j+1, n , m ,memo);
+			ans = Math.min(ans, 1+ Math.min(insertOp, Math.min(deleteOp, replaceOp)));
+		}
+		memo.put(currentKey, ans);
+		return ans;
+	}
 	
 	public static void main(String[] args) {
 		EditDistance obj = new EditDistance();
@@ -55,6 +92,12 @@ public class EditDistance {
 		System.out.println(obj.editDistance("abcde", "fghijk"));
 		System.out.println(obj.editDistance("abcde", "fgaibk"));
 		System.out.println(obj.editDistance("abcde", "agbijk"));
+
+		System.out.println(obj.minDistance("horse", "ros"));
+
+		System.out.println(obj.minDistance("abcde", "fghijk"));
+		System.out.println(obj.minDistance("abcde", "fgaibk"));
+		System.out.println(obj.minDistance("abcde", "agbijk"));
 
 
 

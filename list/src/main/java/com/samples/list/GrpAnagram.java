@@ -3,6 +3,8 @@ package com.samples.list;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -18,6 +20,17 @@ public class GrpAnagram {
 		String[] strs = {"cab","tin","sjn","duh","may","ill","buy","bac","max","doc"};
 		grpAna.groupAnagrams(strs);
 		grpAna.groupAnagramsAnother(strs);
+		method(null);
+		List<Integer> numbers = Arrays.asList(3, 2, 2, 3, 7, 3, 5);
+
+		IntSummaryStatistics stats = numbers.stream().mapToInt(x -> x).summaryStatistics();
+
+	}
+	public static void method(Object o) {
+		System.out.println("Object method");
+	}
+	public static void method(String s) {
+		System.out.println("String method");
 	}
 public List<List<String>> groupAnagrams(String[] strs) 
 {
@@ -57,6 +70,26 @@ private void addToMap(Map<String, ArrayList<String>> map, String asciiChar, Stri
 	
 }
 
+
+	public List<List<String>> groupAnagrams_opt(String[] strs) {
+		if (strs.length == 0) return new ArrayList();
+		Map<String, List> ans = new HashMap<String, List>();
+		int[] count = new int[26];
+		for (String s : strs) {
+			Arrays.fill(count, 0);
+			for (char c : s.toCharArray()) count[c - 'a']++;
+
+			StringBuilder sb = new StringBuilder("");
+			for (int i = 0; i < 26; i++) {
+				sb.append('#');
+				sb.append(count[i]);
+			}
+			String key = sb.toString();
+			if (!ans.containsKey(key)) ans.put(key, new ArrayList());
+			ans.get(key).add(s);
+		}
+		return new ArrayList(ans.values());
+	}
 
 public List<List<String>> groupAnagramsAnother(String[] strs) {
     HashMap<Long, List<String>> map = new HashMap<Long, List<String>>();

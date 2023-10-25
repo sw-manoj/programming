@@ -32,6 +32,6 @@ public class LongestRepeatingCharacterReplacement {
 	
 	public static void main(String[] args) {
 		LongestRepeatingCharacterReplacement obj = new LongestRepeatingCharacterReplacement();
-		System.out.println(obj.characterReplacement("ABBABBA", 2));
+		System.out.println(obj.characterReplacement("ABCADBA", 2));
 	}
 }

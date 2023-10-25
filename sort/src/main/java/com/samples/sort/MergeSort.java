@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /* Java program for Merge Sort */
-public class MergeSort 
+public class t
 { 
 	// Merges two subarrays of arr[]. 
 	// First subarray is arr[l..m] 
